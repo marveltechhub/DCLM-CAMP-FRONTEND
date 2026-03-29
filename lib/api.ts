@@ -1,4 +1,4 @@
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API = process.env.NEXT_PUBLIC_API_URL || 'https://dclm-retreat-backend.onrender.com/api';
 
 export type UserRole = 'super_admin' | 'admin';
 
@@ -46,7 +46,17 @@ export async function api<T>(
   if (auth) {
     headers.set('Authorization', `Bearer ${auth}`);
   }
-  const res = await fetch(`${API}${path}`, { ...rest, headers });
+  
+  // Add mobile-friendly headers
+  headers.set('Accept', 'application/json');
+  
+  const res = await fetch(`${API}${path}`, { 
+    ...rest, 
+    headers,
+    // Mobile-friendly fetch options
+    mode: 'cors',
+    credentials: 'include',
+  });
   const ct = res.headers.get('content-type') || '';
   if (!res.ok) {
     let msg = res.statusText;
