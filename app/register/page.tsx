@@ -471,7 +471,9 @@ export default function RegisterPage() {
                   textAlign: 'center',
                   background: 'var(--bg)',
                   cursor: 'pointer',
-                  transition: 'all var(--transition-fast)'
+                  transition: 'all var(--transition-fast)',
+                  position: 'relative',
+                  overflow: 'hidden'
                 }}>
                   {previewUrl ? (
                     <div>
@@ -530,7 +532,8 @@ export default function RegisterPage() {
                       height: '100%',
                       top: 0,
                       left: 0,
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      zIndex: 1
                     }}
                   />
                 </div>
