@@ -2,6 +2,7 @@
 
 import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import { createRegistrationForm, getLocations } from '@/lib/api';
@@ -51,7 +52,7 @@ export default function RegisterPage() {
         setLocations(filtered);
         if (user.role === 'admin' && user.location?._id) {
           setLocationId(user.location._id);
-        } else if (filtered.length && !locationId) {
+        } else if (filtered.length) {
           setLocationId(filtered[0]._id);
         }
       })
@@ -161,7 +162,7 @@ export default function RegisterPage() {
             Back to Dashboard
           </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <img src="/logo.svg" alt="DCLM" width={32} height={32} />
+            <Image src="/logo.svg" alt="DCLM" width={32} height={32} />
             <span style={{ fontWeight: 700, fontSize: '1rem' }}>DCLM Easter Retreat</span>
           </div>
         </div>
@@ -474,6 +475,7 @@ export default function RegisterPage() {
                 }}>
                   {previewUrl ? (
                     <div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={previewUrl}
                         alt="Preview"
@@ -598,7 +600,7 @@ export default function RegisterPage() {
           color: 'var(--muted)',
           fontSize: '0.875rem'
         }}>
-          By submitting this form, you agree to the camp's terms and conditions.
+          By submitting this form, you agree to the camp&apos;s terms and conditions.
         </p>
       </main>
 
